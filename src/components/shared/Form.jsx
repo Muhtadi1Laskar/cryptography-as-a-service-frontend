@@ -3,6 +3,7 @@ export default function FormGroups({
   id,
   type,
   name,
+  placeholder,
   formData,
   handleInputChange,
   options = [],
@@ -43,7 +44,7 @@ export default function FormGroups({
             id={id}
             name={name}
             rows="4"
-            placeholder="Write your data here..."
+            placeholder={placeholder}
             value={formData[name]}
             onChange={handleInputChange}
             className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-800"
