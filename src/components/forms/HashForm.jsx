@@ -77,7 +77,7 @@ export default function HashForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 bg-blue-950 text-white font-medium rounded-lg shadow hover:bg-blue-950 transition-all disabled:bg-blue-300"
+          className="w-full py-3 bg-blue-950 text-white font-medium rounded-lg shadow hover:bg-blue-900 transition-all disabled:bg-blue-300"
         >
           {loading ? "Processing..." : "Generate Hash"}
         </button>
