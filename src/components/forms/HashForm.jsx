@@ -2,8 +2,10 @@ import { useState } from "react";
 import { postAPI } from "../../hooks/useApi.js";
 import ResultCard from "../ui/ResultCard.jsx";
 import { algorithms } from "../../utils/algorithmList.js";
+import FormGroups from "../shared/Form.jsx";
 
 export default function HashForm() {
+  const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
   const [formData, setFormData] = useState({
     data: "",
@@ -12,12 +14,15 @@ export default function HashForm() {
 
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     setResponse("");
 
     try {
@@ -31,66 +36,53 @@ export default function HashForm() {
     } catch (error) {
       console.error("Error handling data: ", error.response.data.message);
       setResponse(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6"
-      >
-        <h2 className="text-xl font-semibold text-gray-800">Hash Generator</h2>
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-6 border border-gray-200">
+      {/* Title */}
+      <h2 className="text-xl font-semibold text-gray-800 tracking-tight">
+        Hash Generator
+      </h2>
 
-        <div className="space-y-2">
-          <label htmlFor="data" className="text-sm font-medium text-gray-700">
-            Data to Hash
-          </label>
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="space-y-6">
 
-          <textarea
-            id="data"
-            name="data"
-            rows="4"
-            placeholder="Write your data here..."
-            value={formData.data}
-            onChange={handleInputChange}
-            className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-800"
-          />
-        </div>
+        {/* Data input */}
+        <FormGroups
+          label="Data to Hash"
+          id="data"
+          name="data"
+          type="textarea"
+          formData={formData}
+          handleInputChange={handleInputChange}
+        />
 
-        <div className="space-y-2">
-          <label
-            htmlFor="algorithm"
-            className="text-sm font-medium text-gray-700"
-          >
-            Hash Algorithm
-          </label>
+        {/* Algorithm select */}
+        <FormGroups
+          label="Hash Algorithm"
+          id="algorithm"
+          name="algorithm"
+          type="select"
+          options={algorithms}
+          formData={formData}
+          handleInputChange={handleInputChange}
+        />
 
-          <select
-            id="algorithm"
-            name="algorithm"
-            value={formData.algorithm}
-            onChange={handleInputChange}
-            className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          >
-            {algorithms.map((opt, idx) => {
-              return (
-                <option key={idx} value={opt.value}>
-                  {opt.text}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-
+        {/* Submit button */}
         <button
           type="submit"
-          className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 active:bg-blue-800 transition shadow-sm"
+          disabled={loading}
+          className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition-all disabled:bg-blue-300"
         >
-          Generate Hash
+          {loading ? "Processing..." : "Generate Hash"}
         </button>
       </form>
 
+      {/* Result */}
       {response && <ResultCard title="Hash Result" data={response} />}
     </div>
   );
