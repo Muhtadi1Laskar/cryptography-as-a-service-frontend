@@ -1,38 +1,97 @@
-export default function HashForm () {
+import { useState } from "react";
+import { postAPI } from "../../hooks/useApi.js";
+import ResultCard from "../ui/ResultCard.jsx";
+import { algorithms } from "../../utils/algorithmList.js";
+
+export default function HashForm() {
+  const [response, setResponse] = useState("");
+  const [formData, setFormData] = useState({
+    data: "",
+    algorithm: "",
+  });
+
+  const handleInputChange = async (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setResponse("");
+
+    try {
+      const { data, algorithm } = formData;
+      const requestBody = {
+        data,
+        algorithm,
+      };
+      const response = await postAPI("hash/text", requestBody);
+      setResponse(response.data.hash);
+    } catch (error) {
+      console.error("Error handling data: ", error.response.data.message);
+      setResponse(error.response.data.message);
+    }
+  };
+
   return (
-    <form>
-      <div>
-        <label for='Data' class='block mb-2.5 text-sm font-medium text-heading'>
-          Write your data...
-        </label>
-        <textarea
-          id='Data'
-          rows='4'
-          class='bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body'
-          placeholder='Write your data here...'
-        ></textarea>
-      </div>
-      <div>
-        <label htmlFor='hash_select' className='sr-only'>
-          Select Hash Algorithm
-        </label>
-        <select
-          id='hash_select'
-          className='block py-2.5 ps-0 w-full text-sm text-body bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer'
-        >
-          <option selected>Choose a Hash Algorithm</option>
-          <option value="Sha256">Sha256</option>
-          <option value="Sha256">Sha256</option>
-          <option value="sha512">Sha512</option>
-          <option value="Sha256">Sha256</option>
-        </select>
-      </div>
-      <button
-        type='submit'
-        class='text-black bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none'
+    <div className="max-w-2xl mx-auto">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-6"
       >
-        Submit
-      </button>
-    </form>
-  )
+        <h2 className="text-xl font-semibold text-gray-800">Hash Generator</h2>
+
+        <div className="space-y-2">
+          <label htmlFor="data" className="text-sm font-medium text-gray-700">
+            Data to Hash
+          </label>
+
+          <textarea
+            id="data"
+            name="data"
+            rows="4"
+            placeholder="Write your data here..."
+            value={formData.data}
+            onChange={handleInputChange}
+            className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-800"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label
+            htmlFor="algorithm"
+            className="text-sm font-medium text-gray-700"
+          >
+            Hash Algorithm
+          </label>
+
+          <select
+            id="algorithm"
+            name="algorithm"
+            value={formData.algorithm}
+            onChange={handleInputChange}
+            className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          >
+            {algorithms.map((opt, idx) => {
+              return (
+                <option key={idx} value={opt.value}>
+                  {opt.text}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 active:bg-blue-800 transition shadow-sm"
+        >
+          Generate Hash
+        </button>
+      </form>
+
+      {response && <ResultCard title="Hash Result" data={response} />}
+    </div>
+  );
 }
