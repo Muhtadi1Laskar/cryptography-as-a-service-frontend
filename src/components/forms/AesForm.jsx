@@ -12,6 +12,8 @@ const TYPES = [
 export default function AesForm() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
+  const [operationType, setOperationType] = useState("Encrypt");
+  const [label, setLabel] = useState("Enter the Text");
   const [formData, setFormData] = useState({
     data: "",
     key: "",
@@ -24,6 +26,15 @@ export default function AesForm() {
       ...prev,
       [name]: value,
     }));
+
+    if (name === "type") updateOperation(value);
+  };
+
+  const updateOperation = (operation) => {
+    const operationName = operation.charAt(0).toUpperCase() + operation.slice(1);
+    const type = operation === "encrypt" ? "Text" : "Cipher Text";
+    setOperationType(operationName);
+    setLabel(`Enter the ${type}:`);
   };
 
   const handleSumbit = async (e) => {
@@ -38,12 +49,8 @@ export default function AesForm() {
       secretKey: key,
     };
 
-    console.log("Form Data: ", formData);
-    console.log("Request Body: ", requestBody);
-
     try {
       const res = await postAPI(`aes/text/${type}`, requestBody);
-      console.log(res.data);
       setResponse(res?.data?.cipherText || res?.data?.text);
     } catch (error) {
       console.log(error.message);
@@ -58,13 +65,13 @@ export default function AesForm() {
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-6 border border-gray-200">
       {/* Title */}
       <h2 className="text-xl font-semibold text-gray-800 tracking-tight">
-        Encrypt / Decrypt
+        {operationType}
       </h2>
 
       <form onSubmit={handleSumbit}>
         {/* Data input */}
         <FormGroups
-          label="Enter the Data:"
+          label={label}
           id="data"
           name="data"
           type="textarea"
@@ -94,13 +101,15 @@ export default function AesForm() {
           formData={formData}
           handleInputChange={handleInputChange}
         />
+        
+        <br />
 
         {/* Submit button */}
         <ButtonGroup
           type="submit"
           className="w-full py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition disabled:bg-blue-300"
           disabled={loading}
-          message={formData["type"]}
+          message={operationType}
         />
       </form>
 
