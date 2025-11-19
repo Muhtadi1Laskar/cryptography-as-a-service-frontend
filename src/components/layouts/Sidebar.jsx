@@ -23,8 +23,7 @@ const routes = [
     label: "AES",
     path: "/aes",
     children: [
-      { label: "Encrypt", path: "/aes/encrypt" },
-      { label: "Decrypt", path: "/aes/decrypt" },
+      { label: "Encrypt & Decrypt", path: "/aes/encrypt-decrypt" },
       { label: "File Encrypt", path: "/aes/encrypt-file" },
       { label: "File Decrypt", path: "/aes/decrypt-file" },
     ],

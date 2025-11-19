@@ -5,6 +5,7 @@ import VerifyHashPage from "./pages/HashPages/VerifyHashPage";
 import FileHashPage from "./pages/HashPages/FileHashPage";
 import HashMultiplePage from "./pages/HashPages/HashMultiplePage";
 import AesPage from "./pages/Aes";
+import AesEncryptDecryptPage from "./pages/AesPages/AesEncryptDecryptPage";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
           <Route path="verify" element={<VerifyHashPage />} />
           <Route path="text/multiple" element={<HashMultiplePage />} />
         </Route>
-        <Route path="/aes" element={AesPage} />
+        <Route path="/aes" element={<AesPage />}>
+          <Route path="encrypt-decrypt" element={<AesEncryptDecryptPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
