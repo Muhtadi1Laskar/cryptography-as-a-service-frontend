@@ -3,6 +3,7 @@ import HashPage from "./pages/Hash";
 import TextHashPage from "./pages/TextHashPage";
 import VerifyHashPage from "./pages/VerifyHashPage";
 import FileHashPage from "./pages/FileHashPage";
+import HashMultiplePage from "./pages/HashMultiplePage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="text" element={<TextHashPage />} />
           <Route path="file" element={<FileHashPage />} />
           <Route path="verify" element={<VerifyHashPage />} />
+          <Route path="text/multiple" element={<HashMultiplePage />} />
         </Route>
       </Routes>
     </BrowserRouter>

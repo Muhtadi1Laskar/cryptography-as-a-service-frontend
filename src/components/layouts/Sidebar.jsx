@@ -8,7 +8,7 @@ const routes = [
       { label: "Text", path: "/hash/text" },
       { label: "File", path: "/hash/file" },
       { label: "Verify", path: "/hash/verify" },
-      { label: "Hash Multiple", path: "/hash/text/multiple" }
+      { label: "Multiple", path: "/hash/text/multiple" }
     ],
   },
   {
