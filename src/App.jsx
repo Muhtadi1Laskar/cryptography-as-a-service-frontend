@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HashPage from "./pages/Hash";
-import TextHashPage from "./pages/TextHashPage";
-import VerifyHashPage from "./pages/VerifyHashPage";
-import FileHashPage from "./pages/FileHashPage";
-import HashMultiplePage from "./pages/HashMultiplePage";
+import TextHashPage from "./pages/HashPages/TextHashPage";
+import VerifyHashPage from "./pages/HashPages/VerifyHashPage";
+import FileHashPage from "./pages/HashPages/FileHashPage";
+import HashMultiplePage from "./pages/HashPages/HashMultiplePage";
+import AesPage from "./pages/Aes";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="verify" element={<VerifyHashPage />} />
           <Route path="text/multiple" element={<HashMultiplePage />} />
         </Route>
+        <Route path="/aes" element={AesPage} />
       </Routes>
     </BrowserRouter>
   );
