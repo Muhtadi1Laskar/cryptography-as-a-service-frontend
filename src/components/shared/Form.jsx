@@ -40,15 +40,28 @@ export default function FormGroups({
             {label}
           </label>
 
-          <textarea
-            id={id}
-            name={name}
-            rows="4"
-            placeholder={placeholder}
-            value={formData[name]}
-            onChange={handleInputChange}
-            className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-800"
-          />
+          {type === "input" ? (
+            <input
+              type="text"
+              id={id}
+              name={name}
+              className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+              placeholder={placeholder}
+              value={formData[name]}
+              onChange={handleInputChange}
+              required
+            />
+          ) : (
+            <textarea
+              id={id}
+              name={name}
+              rows="4"
+              placeholder={placeholder}
+              value={formData[name]}
+              onChange={handleInputChange}
+              className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-800"
+            />
+          )}
         </div>
       )}
     </>
