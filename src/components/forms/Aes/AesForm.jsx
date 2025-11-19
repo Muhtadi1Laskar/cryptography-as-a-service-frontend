@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { postAPI } from "../../hooks/useApi.js";
-import FormGroups from "../shared/Form";
-import ResultCard from "../ui/ResultCard";
-import ButtonGroup from "../ui/Button";
+import FormGroups from "../../shared/Form.jsx";
+import ResultCard from "../../ui/ResultCard.jsx";
+import { postAPI } from "../../../hooks/useApi.js";
+import ButtonGroup from "../../ui/Button.jsx";
 
 const TYPES = [
   { value: "encrypt", text: "Encrypt" },

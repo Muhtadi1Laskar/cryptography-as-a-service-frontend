@@ -1,10 +1,10 @@
 import { useState } from "react";
-// import FormGroup from "../ui/FormGroup";
-import { algorithms } from "../../utils/algorithmList.js";
-import FormGroups from "../shared/Form.jsx";
-import ResultCard from "../ui/ResultCard.jsx";
-import { postAPI } from "../../hooks/useApi.js";
-import ButtonGroup from "../ui/Button.jsx";
+
+import { algorithms } from "../../../utils/algorithmList.js";
+import FormGroups from "../../shared/Form.jsx";
+import ResultCard from "../../ui/ResultCard.jsx";
+import { postAPI } from "../../../hooks/useApi.js";
+import ButtonGroup from "../../ui/Button.jsx";
 
 export default function HashFileForm() {
   const [formData, setFormData] = useState({
