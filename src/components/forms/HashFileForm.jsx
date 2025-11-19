@@ -3,6 +3,7 @@ import { useState } from "react";
 import { algorithms } from "../../utils/algorithmList.js";
 import FormGroups from "../shared/Form.jsx";
 import ResultCard from "../ui/ResultCard.jsx";
+import { postAPI } from "../../hooks/useApi.js";
 
 export default function HashFileForm() {
   const [formData, setFormData] = useState({
@@ -35,12 +36,8 @@ export default function HashFileForm() {
       fd.append("file", formData.file);
       fd.append("hash", formData.algorithm);
 
-      const res = await fetch("http://localhost:8080/api/hash/file", {
-        method: "POST",
-        body: fd,
-      });
-
-      const data = await res.json();
+      const res = await postAPI("hash/file", fd);
+      const data = res.data;
       setResult(data.hash || data?.message);
     } catch (err) {
       console.error("Failed to process file: ", err);
