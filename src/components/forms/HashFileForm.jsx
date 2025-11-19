@@ -4,6 +4,7 @@ import { algorithms } from "../../utils/algorithmList.js";
 import FormGroups from "../shared/Form.jsx";
 import ResultCard from "../ui/ResultCard.jsx";
 import { postAPI } from "../../hooks/useApi.js";
+import ButtonGroup from "../ui/Button.jsx";
 
 export default function HashFileForm() {
   const [formData, setFormData] = useState({
@@ -97,13 +98,12 @@ export default function HashFileForm() {
         )}
 
         {/* Submit */}
-        <button
+        <ButtonGroup
           type="submit"
+          className="w-full py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition disabled:bg-blue-300"
           disabled={loading}
-          className="w-full bg-blue-950 hover:bg-blue-900 text-white py-3 rounded-lg font-medium transition disabled:opacity-50"
-        >
-          {loading ? "Hashing File..." : "Generate Hash"}
-        </button>
+          message="Generate Hash"
+        />
       </form>
 
       {/* Result Card */}

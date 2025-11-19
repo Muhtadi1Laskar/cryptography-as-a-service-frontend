@@ -3,6 +3,7 @@ import { postAPI } from "../../hooks/useApi.js";
 import ResultCard from "../ui/ResultCard.jsx";
 import { algorithms } from "../../utils/algorithmList.js";
 import FormGroups from "../shared/Form.jsx";
+import ButtonGroup from "../ui/Button.jsx";
 
 export default function HashForm() {
   const [loading, setLoading] = useState(false);
@@ -50,7 +51,6 @@ export default function HashForm() {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
-
         {/* Data input */}
         <FormGroups
           label="Data to Hash:"
@@ -74,13 +74,12 @@ export default function HashForm() {
         />
 
         {/* Submit button */}
-        <button
+        <ButtonGroup
           type="submit"
+          className="w-full py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition disabled:bg-blue-300"
           disabled={loading}
-          className="w-full py-3 bg-blue-950 text-white font-medium rounded-lg shadow hover:bg-blue-900 transition-all disabled:bg-blue-300"
-        >
-          {loading ? "Processing..." : "Generate Hash"}
-        </button>
+          message="Generate Hash"
+        />
       </form>
 
       {/* Result */}

@@ -3,6 +3,7 @@ import { postAPI } from "../../hooks//useApi.js";
 import { algorithms } from "../../utils/algorithmList.js";
 import ResultCard from "../ui/ResultCard.jsx";
 import FormGroups from "../shared/Form.jsx";
+import ButtonGroup from "../ui/Button.jsx";
 
 export default function VerifyHashForm() {
   const [loading, setLoading] = useState(false);
@@ -37,7 +38,7 @@ export default function VerifyHashForm() {
       const isSameHash = response?.data?.isSame
         ? "Hash Matched with the data"
         : "Hash didn't match with the data";
-        
+
       setResponse(isSameHash);
     } catch (error) {
       console.error("Error handling data: ", error.response.data);
@@ -88,13 +89,12 @@ export default function VerifyHashForm() {
           handleInputChange={handleInputChange}
         />
 
-        <button
+        <ButtonGroup
           type="submit"
+          className="w-full py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition disabled:bg-blue-300"
           disabled={loading}
-          className="w-full py-3 bg-blue-950 text-white font-medium rounded-lg shadow hover:bg-blue-950 transition-all disabled:bg-blue-300"
-        >
-          {loading ? "Processing..." : "Generate Hash"}
-        </button>
+          message="Verify Hash"
+        />
       </form>
 
       {response && <ResultCard title="Verification" data={response} />}
