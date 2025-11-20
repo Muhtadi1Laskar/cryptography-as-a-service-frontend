@@ -9,6 +9,7 @@ import AesEncryptDecryptPage from "./pages/AesPages/AesEncryptDecryptPage";
 import AesFilePage from "./pages/AesPages/AesFilePage";
 import HmacPage from "./pages/Hmac";
 import CreateHmacPage from "./pages/HmacPages/CreateHmacPage";
+import VerifyHmacPage from "./pages/HmacPages/VerifyHmacPage";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
         </Route>
         <Route path="/hmac" element={<HmacPage />}>
           <Route path="generate" element={<CreateHmacPage />} />
-          {/* <Route path="encrypt-file" element={<AesFilePage />}/> */}
+          <Route path="verify" element={<VerifyHmacPage />}/>
         </Route>
       </Routes>
     </BrowserRouter>
