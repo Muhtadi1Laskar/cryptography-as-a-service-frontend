@@ -7,6 +7,8 @@ import HashMultiplePage from "./pages/HashPages/HashMultiplePage";
 import AesPage from "./pages/Aes";
 import AesEncryptDecryptPage from "./pages/AesPages/AesEncryptDecryptPage";
 import AesFilePage from "./pages/AesPages/AesFilePage";
+import HmacPage from "./pages/Hmac";
+import CreateHmacPage from "./pages/HmacPages/CreateHmacPage";
 
 function App() {
   return (
@@ -22,6 +24,10 @@ function App() {
         <Route path="/aes" element={<AesPage />}>
           <Route path="encrypt-decrypt" element={<AesEncryptDecryptPage />} />
           <Route path="encrypt-file" element={<AesFilePage />}/>
+        </Route>
+        <Route path="/hmac" element={<HmacPage />}>
+          <Route path="generate" element={<CreateHmacPage />} />
+          {/* <Route path="encrypt-file" element={<AesFilePage />}/> */}
         </Route>
       </Routes>
     </BrowserRouter>

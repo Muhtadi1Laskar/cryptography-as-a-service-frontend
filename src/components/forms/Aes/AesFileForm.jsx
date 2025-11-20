@@ -134,7 +134,7 @@ export default function AesFileForm() {
       </form>
 
       {/* Result Card */}
-      {response && <ResultCard title="Hash" data={response} />}
+      {response && <ResultCard title={`${operationType}ed Data`} data={response} />}
     </div>
   );
 }
