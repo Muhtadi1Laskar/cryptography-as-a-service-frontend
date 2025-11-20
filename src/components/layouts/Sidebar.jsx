@@ -8,7 +8,7 @@ const routes = [
       { label: "Text", path: "/hash/text" },
       { label: "File", path: "/hash/file" },
       { label: "Verify", path: "/hash/verify" },
-      { label: "Multiple", path: "/hash/text/multiple" }
+      { label: "Multiple", path: "/hash/text/multiple" },
     ],
   },
   {
@@ -23,9 +23,8 @@ const routes = [
     label: "AES",
     path: "/aes",
     children: [
-      { label: "Encrypt & Decrypt", path: "/aes/encrypt-decrypt" },
-      { label: "File Encrypt", path: "/aes/encrypt-file" },
-      { label: "File Decrypt", path: "/aes/decrypt-file" },
+      { label: "Encrypt / Decrypt", path: "/aes/encrypt-decrypt" },
+      { label: "File Encrypt / Decrypt", path: "/aes/encrypt-file" }
     ],
   },
   { label: "RSA", path: "/rsa" },

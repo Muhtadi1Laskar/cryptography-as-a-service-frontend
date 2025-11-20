@@ -53,7 +53,6 @@ export default function AesForm() {
       const res = await postAPI(`aes/text/${type}`, requestBody);
       setResponse(res?.data?.cipherText || res?.data?.text);
     } catch (error) {
-      console.log(error.message);
       console.error("Failed to fetch data: ", error);
       setResponse(error.response?.data?.message || "Unknown error");
     } finally {
