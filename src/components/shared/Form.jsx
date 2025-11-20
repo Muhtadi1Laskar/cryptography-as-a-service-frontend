@@ -21,7 +21,15 @@ export default function FormGroups({
             name={name}
             value={formData[name]}
             onChange={handleInputChange}
-            className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="
+              w-full p-3 
+            bg-gray-50 border 
+            border-gray-300 
+              rounded-lg 
+            text-gray-700 
+              focus:ring-2 
+              focus:ring-blue-500 
+              focus:border-blue-500"
           >
             <option disabled value="">
               -- Select an option --
@@ -45,7 +53,16 @@ export default function FormGroups({
               type="text"
               id={id}
               name={name}
-              className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-800"
+              className="
+                w-full 
+                p-3 
+                rounded-lg border 
+                border-gray-300 
+                focus:ring-2 
+                focus:ring-blue-500 
+                focus:border-blue-500 
+                bg-gray-50 
+                text-gray-800"
               placeholder={placeholder}
               value={formData[name]}
               onChange={handleInputChange}
@@ -59,7 +76,17 @@ export default function FormGroups({
               placeholder={placeholder}
               value={formData[name]}
               onChange={handleInputChange}
-              className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-800"
+              className="
+                w-full 
+                p-3 
+                rounded-lg 
+                border 
+                border-gray-300 
+                focus:ring-2 
+                focus:ring-blue-500 
+                focus:border-blue-500 
+                bg-gray-50 
+                text-gray-800"
             />
           )}
         </div>

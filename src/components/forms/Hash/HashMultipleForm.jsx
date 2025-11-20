@@ -114,7 +114,12 @@ export default function HashMultipleForm() {
         {/* Submit button */}
         <ButtonGroup
           type="submit"
-          className="w-full py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition disabled:bg-blue-300"
+          className="
+            w-full py-3 
+            bg-blue-900 
+            text-white rounded-lg 
+            hover:bg-blue-800 transition 
+            disabled:bg-blue-300"
           disabled={loading}
           message="Generate Hashes"
         />
