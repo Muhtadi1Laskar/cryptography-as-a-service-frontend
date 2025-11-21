@@ -33,13 +33,15 @@ export default function VerifyHmacForm() {
       data,
       secretKey,
       hash: algorithm,
-      hmac
+      hmac,
     };
 
     try {
       const res = await postAPI("hmac/verify", requestBody);
       const verification = res?.data?.isVerified;
-      const message = verification ? "Verification successful" : "Verification failed"
+      const message = verification
+        ? "Verification successful"
+        : "Verification failed";
       setResponse(message);
     } catch (error) {
       console.error("Failed to fetch data: ", error);
@@ -52,9 +54,7 @@ export default function VerifyHmacForm() {
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md space-y-6 border border-gray-200">
       {/* Title */}
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">
-        Verify Hmac
-      </h2>
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">Verify Hmac</h2>
 
       <form onSubmit={handleSubmit}>
         {/* Data input */}
