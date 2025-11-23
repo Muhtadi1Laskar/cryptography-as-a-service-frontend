@@ -28,13 +28,13 @@ export default function AesFileForm() {
       setFormData({ ...formData, [name]: value });
     }
 
-    if(name === "type") updateOperation(value);
+    if (name === "type") updateOperation(value);
   };
 
   const updateOperation = (operation) => {
     const operationName = operation.charAt(0).toUpperCase() + operation.slice(1);
     setOperationType(operationName);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -134,7 +134,9 @@ export default function AesFileForm() {
       </form>
 
       {/* Result Card */}
-      {response && <ResultCard title={`${operationType}ed Data`} data={response} />}
+      {response && (
+        <ResultCard title={`${operationType}ed Data`} data={response} />
+      )}
     </div>
   );
 }
