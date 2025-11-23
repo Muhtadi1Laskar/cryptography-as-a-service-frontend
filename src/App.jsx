@@ -24,11 +24,11 @@ function App() {
         </Route>
         <Route path="/aes" element={<AesPage />}>
           <Route path="encrypt-decrypt" element={<AesEncryptDecryptPage />} />
-          <Route path="encrypt-file" element={<AesFilePage />}/>
+          <Route path="encrypt-file" element={<AesFilePage />} />
         </Route>
         <Route path="/hmac" element={<HmacPage />}>
           <Route path="generate" element={<CreateHmacPage />} />
-          <Route path="verify" element={<VerifyHmacPage />}/>
+          <Route path="verify" element={<VerifyHmacPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
